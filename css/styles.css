@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #fac5ed;
 }
 
 body {
@@ -50,6 +51,7 @@ a:hover {
 h1, h2 {
   margin-bottom: 20px;
   word-break: break-word;
+  color: #9925b6;
 }
 
 /* Responsive font */
