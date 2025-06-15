@@ -1,22 +1,103 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Mama's Birthday</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pingping's Letter</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    .card {
+      width: 300px;
+      height: 200px;
+      perspective: 1000px;
+      margin: 50px auto 20px auto;
+      cursor: pointer;
+    }
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 1s;
+      transform-style: preserve-3d;
+      position: relative;
+    }
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      background: #ffe4e1;
+      border: 2px solid #ff69b4;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .card-back {
+      transform: rotateY(180deg);
+    }
+    .flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+    .flower {
+      font-size: 3rem;
+      margin-top: 10px;
+      animation: sway 2s infinite alternate;
+    }
+    @keyframes sway {
+      0% { transform: rotate(-5deg); }
+      100% { transform: rotate(5deg); }
+    }
+  </style>
 </head>
 <body>
-    <div class = letterpage id="Pingping">
-    <p>
-        Hi mom, this is Pingping! I wish you a happy birthday. 
-    </p>
-
+  <h1>For Pingping 🎉</h1>
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front">
+        <h2>Happy Birthday!</h2>
+        <p>Click to open</p>
+      </div>
+      <div class="card-back">
+        <h2>💖 Surprise! 💖</h2>
+        <p>Wishing you endless smiles and joy, Pingping!</p>
+      </div>
     </div>
-    <footer>
-        
-    </footer>
+  </div>
+  <div class="flower">🌸</div>
+  <script>
+    window.onload = () => {
+      const duration = 5 * 1000;
+      const end = Date.now() + duration;
+      (function frame() {
+        confetti({
+          particleCount: 2,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          shapes: ['💖']
+        });
+        confetti({
+          particleCount: 2,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          shapes: ['💖']
+        });
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      }());
+    };
+
+    document.querySelector('.card').addEventListener('click', function() {
+      this.classList.toggle('flipped');
+    });
+  </script>
 </body>
-<script src="js/scripts.js"></script>
 </html>
